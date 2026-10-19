@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPC3 Across Cancers</title>
+<meta name="description" content="Phase 2 of my Glypican-3 project: GPC3 in all 33 TCGA cancers against TCGA and GTEx normal tissue, diagnostic accuracy, adjusted survival models, copy number, methylation, co-expression and the AlphaFold structure with cancer mutations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="report.css?v=1">
+<style>
+  #viewer { width: 100%; height: 440px; position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+  .cmp td:first-child { color: var(--muted); }
+  .scale { display: inline-block; width: 160px; height: 10px; border-radius: 5px; vertical-align: middle;
+    background: linear-gradient(90deg, #FF7D45 0%, #FFDB13 30%, #65CBF3 60%, #0053D6 100%); }
+  @media (max-width: 820px) { #viewer { height: 340px; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Cancer genomics · Python · TCGA + GTEx · survival · AlphaFold</p>
+    <h1>Glypican-3 across 33 cancers: a strong diagnostic marker, a weak prognostic one</h1>
+    <p class="lede">GPC3 is a cell-surface protein switched back on in liver cancer and a target for antibody and CAR-T therapies.
+      In my diploma project (phase 1) I tested five cancers with web tools. Phase 2 rebuilds it as one reproducible pipeline on public data:
+      every TCGA cancer against normal tissue, how well GPC3 alone spots a tumour, whether it predicts survival once stage and age are accounted for,
+      what drives it, which genes move with it, and where cancer mutations sit on its structure.</p>
+    <p class="byline">Mankirat Singh · <span id="generated"></span></p>
+    <nav class="toc" aria-label="Sections">
+      <a href="phase1.html">← Phase 1</a><a href="#glance">At a glance</a><a href="#pancancer">33 cancers</a><a href="#diagnostic">Diagnosis</a>
+      <a href="#survival">Survival</a><a href="#drivers">What drives it</a><a href="#coexp">Co-expression</a><a href="#structure">Structure</a>
+      <a href="#checks">Checks</a><a href="#methods">Methods</a>
+    </nav>
+  </div>
+</header>
+<div id="banner" class="banner" hidden></div>
+
+<main class="wrap">
+  <section id="glance">
+    <h2>At a glance</h2>
+    <div id="kpis" class="kpis"></div>
+    <div id="takeaways" class="takeaways"></div>
+  </section>
+
+  <section id="phases">
+    <h2>From phase 1 to phase 2</h2>
+    <div class="tablewrap"><table class="tbl cmp">
+      <thead><tr><th></th><th>Phase 1 (diploma, 2025)</th><th>Phase 2 (this report)</th></tr></thead>
+      <tbody>
+        <tr><td>Cancers</td><td>5, in GEPIA2</td><td>All TCGA cancers, my own tests, false discovery rate controlled</td></tr>
+        <tr><td>Diagnostic value</td><td>Tumour vs normal medians</td><td>AUC with bootstrap 95% CI, compared with AFP; paired tumour–normal test</td></tr>
+        <tr><td>Survival</td><td>Median split, OS and DFS</td><td>OS, DSS and PFI; Cox per SD, adjusted for age, sex and stage; cutpoint permutation; all cancers</td></tr>
+        <tr><td>Mechanism</td><td>STRING and KEGG</td><td>Copy number, promoter methylation, AFP, grade; genome-wide co-expression and Hallmark GSEA</td></tr>
+        <tr><td>Structure</td><td>Sequence tools, PSIPRED, IUPred2A</td><td>UniProt features, AlphaFold confidence, TCGA mutations in 3D</td></tr>
+        <tr><td>Reproducible</td><td>Web tools and a notebook</td><td>One command, run by GitHub Actions, with tests</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section id="pancancer">
+    <h2>GPC3 in every cancer</h2>
+    <p class="note" id="pan-note"></p>
+    <div class="legend"><span><i class="sw" style="background:var(--bad)"></i>higher in tumour (q &lt; 0.05)</span><span><i class="sw" style="background:var(--c2)"></i>lower in tumour</span><span><i class="sw" style="background:var(--muted)"></i>no clear difference</span><span><i class="sw" style="background:var(--line)"></i>normal tissue</span></div>
+    <figure class="chart wide" id="c-pan"></figure>
+    <p class="small">Each row: the box shows the middle 50% of tumours (coloured) and of normal samples (grey), whiskers 5th–95th percentile, line at the median; log2(TPM+1).
+      Normal = TCGA adjacent normal + GTEx samples of the same organ. Right: AUC with 95% CI (0.5 = no better than chance; 1 = perfect separation).</p>
+  </section>
+
+  <section id="diagnostic">
+    <h2>Can GPC3 alone spot a liver tumour?</h2>
+    <p class="note" id="diag-note"></p>
+    <div class="two">
+      <div><h3>Same patient, tumour vs normal</h3><p class="small">Each line joins one patient's normal liver sample to their tumour.</p><figure class="chart" id="c-paired"></figure></div>
+      <div><h3>GPC3 vs AFP</h3><p class="small">AFP is the blood marker used in liver-cancer surveillance. AUC for telling tumour from normal liver, with 95% CI.</p><figure class="chart" id="c-afp-auc"></figure></div>
+    </div>
+  </section>
+
+  <section id="survival">
+    <h2>Does GPC3 predict survival in liver cancer?</h2>
+    <p class="note" id="surv-note"></p>
+    <div class="tools"><div class="seg" id="ep-seg"></div></div>
+    <div class="two">
+      <div><h3>Kaplan–Meier, median split</h3><figure class="chart" id="c-km"></figure><div class="legend"><span><i class="sw" style="background:var(--bad)"></i>high GPC3</span><span><i class="sw" style="background:var(--c2)"></i>low GPC3</span></div></div>
+      <div><h3>The "best cutpoint" trap</h3><p class="small">Log-rank p at every cutpoint from the 20th to the 80th percentile. The smallest one looks significant, but random relabelling of patients gives one that small this often:</p>
+        <figure class="chart" id="c-cut"></figure><p class="small" id="cut-note"></p></div>
+    </div>
+    <h3>Cox regression</h3>
+    <div class="tablewrap"><table class="tbl compact" id="t-cox"></table></div>
+    <h3>Overall survival in every cancer</h3>
+    <p class="small">Hazard ratio per standard deviation of GPC3 (Cox), 95% CI. Above 1 = more GPC3, shorter survival. Filled = q &lt; 0.05 after correcting for the number of cancers.</p>
+    <figure class="chart wide" id="c-forest"></figure>
+  </section>
+
+  <section id="drivers">
+    <h2>What goes with high GPC3 in liver tumours?</h2>
+    <p class="note" id="drv-note"></p>
+    <div class="two">
+      <div><h3>Copy number</h3><p class="small">GPC3 by GISTIC2 copy-number call (−2 deep loss … +2 high gain).</p><figure class="chart" id="c-cnv"></figure></div>
+      <div><h3 id="meth-h">Methylation</h3><p class="small" id="meth-note"></p><figure class="chart" id="c-meth"></figure></div>
+    </div>
+    <div class="two">
+      <div><h3>GPC3 and AFP in the same tumours</h3><figure class="chart" id="c-afp"></figure></div>
+      <div><h3>Grade, stage and sex</h3><div class="tablewrap"><table class="tbl compact" id="t-clin"></table></div></div>
+    </div>
+  </section>
+
+  <section id="coexp">
+    <h2>Genes and pathways that move with GPC3</h2>
+    <p class="note" id="co-note"></p>
+    <div class="two">
+      <div><h3>Hallmark pathways (pre-ranked GSEA)</h3><p class="small">Normalised enrichment score; right = up in tumours with more GPC3. Filled = FDR &lt; 0.05.</p><figure class="chart" id="c-gsea"></figure></div>
+      <div><h3>Most correlated genes</h3><div class="tablewrap"><table class="tbl compact" id="t-co"></table></div></div>
+    </div>
+  </section>
+
+  <section id="structure">
+    <h2>The protein and its cancer mutations</h2>
+    <p class="note" id="str-note"></p>
+    <div id="viewer"></div>
+    <div class="legend"><span><i class="scale"></i> AlphaFold confidence: low → very high</span><span><i class="sw" style="background:#e11d74"></i>residue mutated in TCGA tumours (sphere)</span></div>
+    <h3>Along the sequence</h3>
+    <figure class="chart wide" id="c-track"></figure>
+    <div class="two">
+      <div><h3>Mutations by cancer</h3><div class="tablewrap"><table class="tbl compact" id="t-mut"></table></div></div>
+      <div><h3>Mutation types</h3><div class="tablewrap"><table class="tbl compact" id="t-mtype"></table></div></div>
+    </div>
+  </section>
+
+  <section id="checks">
+    <h2>Checks</h2>
+    <ul class="checks" id="checklist"></ul>
+  </section>
+
+  <section id="methods">
+    <h2>Methods</h2>
+    <ul class="plain">
+      <li><b>Expression:</b> UCSC Xena Toil recompute of TCGA and GTEx (RSEM TPM, same pipeline for tumour and normal), converted to log2(TPM+1). Tumour = TCGA primary tumours; normal = TCGA adjacent normal plus GTEx samples of the same primary site. Mann–Whitney test, Benjamini–Hochberg FDR across cancers, AUC with 1,000 bootstrap resamples. Cancers with fewer than 10 normal samples are shown but not tested.</li>
+      <li><b>Survival:</b> TCGA Clinical Data Resource endpoints (OS, DSS, PFI). Log-rank test on a median split; Cox models with GPC3 per standard deviation, alone and adjusted for age, sex and stage (I–II vs III–IV); Schoenfeld-residual test of proportional hazards. Cutpoints scanned from the 20th to 80th percentile; 1,000 permutations of GPC3 across patients give the chance distribution of the smallest p.</li>
+      <li><b>Drivers:</b> GISTIC2 thresholded copy number and Illumina 450k methylation probes in GPC3 (TCGA-LIHC, UCSC Xena); Spearman correlations, Benjamini–Hochberg across probes.</li>
+      <li><b>Co-expression:</b> Spearman correlation of GPC3 with every gene expressed in at least 20% of TCGA-LIHC tumours (RSEM, log2(x+1)); pre-ranked GSEA (gseapy, 1,000 permutations) on the 50 MSigDB Hallmark gene sets.</li>
+      <li><b>Structure:</b> UniProt P51654 features; AlphaFold DB model and per-residue pLDDT; somatic mutations in the TCGA PanCancer Atlas from cBioPortal; binomial test of missense mutations in confidently folded residues (pLDDT ≥ 70) against their share of the protein.</li>
+      <li><b>Reproducible:</b> <code>python run_all.py</code> runs every step; a GitHub workflow runs it end to end with unit tests (AUC, Benjamini–Hochberg, log-rank against lifelines, cutpoint permutation on simulated null data) and checks on the output. Seeds are fixed.</li>
+    </ul>
+    <h3>What this cannot tell you</h3>
+    <ul class="plain">
+      <li>TCGA adjacent normal tissue is not healthy tissue, and GTEx donors differ from patients; the TCGA-only comparison is a check on that.</li>
+      <li>RNA level is not protein on the cell surface, which is what antibodies and CAR-T cells see.</li>
+      <li>Survival models use one cohort with treatment and follow-up that vary between centres; no external validation cohort is included.</li>
+      <li>Correlation with copy number, methylation or pathways is not causation.</li>
+    </ul>
+  </section>
+</main>
+<p class="foot wrap">Data: UCSC Xena (TCGA, GTEx, TCGA Clinical Data Resource), cBioPortal (TCGA PanCancer Atlas), UniProt, AlphaFold DB, MSigDB via Enrichr.
+  Code: <a href="https://github.com/bymankirat/GPC3-Pan-Cancer-Biomarker">github.com/bymankirat/GPC3-Pan-Cancer-Biomarker</a>. Built by Mankirat Singh.</p>
+<script src="https://cdn.jsdelivr.net/npm/3dmol@2.1.0/build/3Dmol-min.js"></script>
+<script src="results.js?v=1"></script>
+<script src="report.js?v=1"></script>
+</body>
+</html>
