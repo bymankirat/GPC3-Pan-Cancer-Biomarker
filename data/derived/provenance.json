@@ -1,0 +1,52 @@
+{
+ "downloaded": "2026-10-19",
+ "files": {
+  "alphafold": {
+   "md5": "16dbc8a9b99c947283bcd198861d4f3d",
+   "source": "https://alphafold.ebi.ac.uk/files/AF-P51654-F1-model_v6.pdb"
+  },
+  "cnv": {
+   "source": "https://tcga.xenahubs.net TCGA.LIHC.sampleMap/Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes"
+  },
+  "lihc_expression": {
+   "bytes": 16492723,
+   "md5": "cb601a3ed0a2550a7ac881e341b3d25c",
+   "source": "https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.LIHC.sampleMap%2FHiSeqV2.gz"
+  },
+  "methylation": {
+   "probes": [
+    "cg17725109",
+    "cg06431415",
+    "cg11442732",
+    "cg02442693",
+    "cg09760728",
+    "cg05445331",
+    "cg06384623",
+    "cg07297906",
+    "cg27496708",
+    "cg16272791",
+    "cg14867863",
+    "cg04139820"
+   ],
+   "source": "https://tcga.xenahubs.net TCGA.LIHC.sampleMap/HumanMethylation450"
+  },
+  "mutations": {
+   "n": 117,
+   "source": "https://www.cbioportal.org/api 32 PanCancer Atlas studies"
+  },
+  "pancancer_expression": {
+   "bytes": 335917,
+   "md5": "360dca57991c2d0148c0cc3236089f75",
+   "source": "https://toil.xenahubs.net TcgaTargetGtex_rsem_gene_tpm probes {'GPC3': 'ENSG00000147257.13', 'AFP': 'ENSG00000081051.7'}"
+  },
+  "survival": {
+   "bytes": 183414,
+   "md5": "88d94309011daad748c1149c5b2643a8",
+   "source": "https://pancanatlas.xenahubs.net Survival_SupplementalTable_S1_20171025_xena_sp"
+  },
+  "uniprot": {
+   "length": 580,
+   "source": "https://rest.uniprot.org/uniprotkb/P51654.json"
+  }
+ }
+}

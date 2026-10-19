@@ -1,0 +1,330 @@
+{
+ "accession": "P51654",
+ "alphafold": {
+  "model": "AF-P51654-F1",
+  "same_sequence": true,
+  "version": 6
+ },
+ "features": [
+  {
+   "description": "",
+   "end": 24,
+   "start": 1,
+   "type": "Signal"
+  },
+  {
+   "description": "Glypican-3 alpha subunit",
+   "end": 358,
+   "start": 25,
+   "type": "Chain"
+  },
+  {
+   "description": "Glypican-3 beta subunit",
+   "end": 554,
+   "start": 359,
+   "type": "Chain"
+  },
+  {
+   "description": "Removed in mature form",
+   "end": 580,
+   "start": 555,
+   "type": "Propeptide"
+  },
+  {
+   "description": "Cleavage",
+   "end": 359,
+   "start": 358,
+   "type": "Site"
+  },
+  {
+   "description": "Pyrrolidone carboxylic acid",
+   "end": 25,
+   "start": 25,
+   "type": "Modified residue"
+  },
+  {
+   "description": "Phosphoserine; by FAM20C",
+   "end": 352,
+   "start": 352,
+   "type": "Modified residue"
+  },
+  {
+   "description": "GPI-anchor amidated asparagine",
+   "end": 554,
+   "start": 554,
+   "type": "Lipidation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 124,
+   "start": 124,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 241,
+   "start": 241,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 418,
+   "start": 418,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "O-linked (Xyl...) (glycosaminoglycan) serine",
+   "end": 495,
+   "start": 495,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "O-linked (Xyl...) (glycosaminoglycan) serine",
+   "end": 509,
+   "start": 509,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "",
+   "end": 72,
+   "start": 35,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 262,
+   "start": 65,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 265,
+   "start": 73,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 349,
+   "start": 197,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 285,
+   "start": 252,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "Interchain (between alpha and beta chains)",
+   "end": 422,
+   "start": 274,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "Interchain (between alpha and beta chains)",
+   "end": 410,
+   "start": 278,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "in isoform 2",
+   "end": 112,
+   "start": 59,
+   "type": "Alternative sequence"
+  },
+  {
+   "description": "in isoform 3",
+   "end": 344,
+   "start": 344,
+   "type": "Alternative sequence"
+  },
+  {
+   "description": "in SGBS1; dbSNP:rs104894854",
+   "end": 296,
+   "start": 296,
+   "type": "Natural variant"
+  },
+  {
+   "description": "in dbSNP:rs11539789",
+   "end": 429,
+   "start": 429,
+   "type": "Natural variant"
+  },
+  {
+   "description": "Abolishes proteolytic processing. Abolishes interaction with WNT5A and ability to regulate Wnt signaling. Increases binding of hedgehog protein SHH to the PTC1 receptor and abolishes ability to inhibit hedgehog signaling.",
+   "end": 358,
+   "start": 355,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 355,
+   "start": 355,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 358,
+   "start": 358,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 374,
+   "start": 371,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 389,
+   "start": 387,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 396,
+   "start": 394,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "",
+   "end": 65,
+   "start": 63,
+   "type": "Beta strand"
+  },
+  {
+   "description": "",
+   "end": 133,
+   "start": 75,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 137,
+   "start": 135,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 156,
+   "start": 140,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 177,
+   "start": 163,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 183,
+   "start": 178,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 204,
+   "start": 195,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 210,
+   "start": 205,
+   "type": "Turn"
+  },
+  {
+   "description": "",
+   "end": 243,
+   "start": 211,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 260,
+   "start": 250,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 265,
+   "start": 262,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 285,
+   "start": 275,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 290,
+   "start": 287,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 309,
+   "start": 292,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 321,
+   "start": 316,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 335,
+   "start": 323,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 348,
+   "start": 338,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 396,
+   "start": 384,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 403,
+   "start": 397,
+   "type": "Turn"
+  },
+  {
+   "description": "",
+   "end": 411,
+   "start": 405,
+   "type": "Helix"
+  },
+  {
+   "description": "",
+   "end": 423,
+   "start": 420,
+   "type": "Beta strand"
+  },
+  {
+   "description": "",
+   "end": 431,
+   "start": 425,
+   "type": "Beta strand"
+  },
+  {
+   "description": "",
+   "end": 474,
+   "start": 457,
+   "type": "Helix"
+  }
+ ],
+ "length": 580,
+ "sequence": "MAGTVRTACLVVAMLLSLDFPGQAQPPPPPPDATCHQVRSFFQRLQPGLKWVPETPVPGSDLQVCLPKGPTCCSRKMEEKYQLTARLNMEQLLQSASMELKFLIIQNAAVFQEAFEIVVRHAKNYTNAMFKNNYPSLTPQAFEFVGEFFTDVSLYILGSDINVDDMVNELFDSLFPVIYTQLMNPGLPDSALDINECLRGARRDLKVFGNFPKLIMTQVSKSLQVTRIFLQALNLGIEVINTTDHLKFSKDCGRMLTRMWYCSYCQGLMMVKPCGGYCNVVMQGCMAGVVEIDKYWREYILSLEELVNGMYRIYDMENVLLGLFSTIHDSIQYVQKNAGKLTTTIGKLCAHSQQRQYRSAYYPEDLFIDKKVLKVAHVEHEETLSSRRRELIQKLKSFISFYSALPGYICSHSPVAENDTLCWNGQELVERYSQKAARNGMKNQFNLHELKMKGPEPVVSQIIDKLKHINQLLRTMSMPKGRVLDKNLDEEGFESGDCGDDEDECIGGSGDGMIKVKNQLRFLAELAYDLDVDDAPGNSQQATPKDNEISTFHNLGNVHSPLKLLTSMAISVVCFFFLVH"
+}
