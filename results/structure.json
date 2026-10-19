@@ -1,0 +1,1592 @@
+{
+ "alphafold": {
+  "model": "AF-P51654-F1",
+  "same_sequence": true,
+  "version": 6
+ },
+ "disordered_fraction": 0.28448275862068967,
+ "features": [
+  {
+   "description": "",
+   "end": 24,
+   "start": 1,
+   "type": "Signal"
+  },
+  {
+   "description": "Glypican-3 alpha subunit",
+   "end": 358,
+   "start": 25,
+   "type": "Chain"
+  },
+  {
+   "description": "Glypican-3 beta subunit",
+   "end": 554,
+   "start": 359,
+   "type": "Chain"
+  },
+  {
+   "description": "Removed in mature form",
+   "end": 580,
+   "start": 555,
+   "type": "Propeptide"
+  },
+  {
+   "description": "Cleavage",
+   "end": 359,
+   "start": 358,
+   "type": "Site"
+  },
+  {
+   "description": "GPI-anchor amidated asparagine",
+   "end": 554,
+   "start": 554,
+   "type": "Lipidation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 124,
+   "start": 124,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 241,
+   "start": 241,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "N-linked (GlcNAc...) asparagine",
+   "end": 418,
+   "start": 418,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "O-linked (Xyl...) (glycosaminoglycan) serine",
+   "end": 495,
+   "start": 495,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "O-linked (Xyl...) (glycosaminoglycan) serine",
+   "end": 509,
+   "start": 509,
+   "type": "Glycosylation"
+  },
+  {
+   "description": "",
+   "end": 72,
+   "start": 35,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 262,
+   "start": 65,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 265,
+   "start": 73,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 349,
+   "start": 197,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "",
+   "end": 285,
+   "start": 252,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "Interchain (between alpha and beta chains)",
+   "end": 422,
+   "start": 274,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "Interchain (between alpha and beta chains)",
+   "end": 410,
+   "start": 278,
+   "type": "Disulfide bond"
+  },
+  {
+   "description": "Abolishes proteolytic processing. Abolishes interaction with WNT5A and ability to regulate Wnt signaling. Increases binding of hedgehog protein SHH to the PTC1 receptor and abolishes ability to inhibit hedgehog signaling.",
+   "end": 358,
+   "start": 355,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 355,
+   "start": 355,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 358,
+   "start": 358,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 374,
+   "start": 371,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 389,
+   "start": 387,
+   "type": "Mutagenesis"
+  },
+  {
+   "description": "No effect on proteolytic processing.",
+   "end": 396,
+   "start": 394,
+   "type": "Mutagenesis"
+  }
+ ],
+ "length": 580,
+ "mutations": {
+  "by_cancer": [
+   {
+    "cancer": "UCEC",
+    "mutated": 33,
+    "percent": 6.38,
+    "sequenced": 517
+   },
+   {
+    "cancer": "SKCM",
+    "mutated": 13,
+    "percent": 2.95,
+    "sequenced": 440
+   },
+   {
+    "cancer": "LUSC",
+    "mutated": 10,
+    "percent": 2.07,
+    "sequenced": 484
+   },
+   {
+    "cancer": "COADREAD",
+    "mutated": 9,
+    "percent": 1.69,
+    "sequenced": 534
+   },
+   {
+    "cancer": "LUAD",
+    "mutated": 7,
+    "percent": 1.24,
+    "sequenced": 566
+   },
+   {
+    "cancer": "STAD",
+    "mutated": 6,
+    "percent": 1.38,
+    "sequenced": 436
+   },
+   {
+    "cancer": "BRCA",
+    "mutated": 6,
+    "percent": 0.56,
+    "sequenced": 1066
+   },
+   {
+    "cancer": "HNSC",
+    "mutated": 5,
+    "percent": 0.97,
+    "sequenced": 515
+   },
+   {
+    "cancer": "OV",
+    "mutated": 2,
+    "percent": 0.38,
+    "sequenced": 523
+   },
+   {
+    "cancer": "LIHC",
+    "mutated": 2,
+    "percent": 0.55,
+    "sequenced": 366
+   },
+   {
+    "cancer": "LGG",
+    "mutated": 2,
+    "percent": 0.39,
+    "sequenced": 514
+   },
+   {
+    "cancer": "BLCA",
+    "mutated": 1,
+    "percent": 0.24,
+    "sequenced": 410
+   },
+   {
+    "cancer": "CESC",
+    "mutated": 1,
+    "percent": 0.34,
+    "sequenced": 291
+   },
+   {
+    "cancer": "DLBC",
+    "mutated": 1,
+    "percent": 2.44,
+    "sequenced": 41
+   },
+   {
+    "cancer": "GBM",
+    "mutated": 1,
+    "percent": 0.25,
+    "sequenced": 397
+   },
+   {
+    "cancer": "KIRC",
+    "mutated": 1,
+    "percent": 0.25,
+    "sequenced": 402
+   },
+   {
+    "cancer": "KIRP",
+    "mutated": 1,
+    "percent": 0.36,
+    "sequenced": 276
+   },
+   {
+    "cancer": "MESO",
+    "mutated": 1,
+    "percent": 1.16,
+    "sequenced": 86
+   },
+   {
+    "cancer": "PAAD",
+    "mutated": 1,
+    "percent": 0.56,
+    "sequenced": 179
+   },
+   {
+    "cancer": "UCS",
+    "mutated": 1,
+    "percent": 1.75,
+    "sequenced": 57
+   }
+  ],
+  "by_type": {
+   "Frame_Shift_Del": 2,
+   "Frame_Shift_Ins": 1,
+   "Missense_Mutation": 97,
+   "Nonsense_Mutation": 13,
+   "Splice_Region": 1,
+   "Splice_Site": 3
+  },
+  "list": [
+   {
+    "cancer": "BLCA",
+    "protein_change": "L564R",
+    "start": 564,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "E143Q",
+    "start": 143,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "R199Q",
+    "start": 199,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "L301M",
+    "start": 301,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "L373*",
+    "start": 373,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "R199*",
+    "start": 199,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "BRCA",
+    "protein_change": "E113Rfs*25",
+    "start": 112,
+    "type": "Frame_Shift_Del"
+   },
+   {
+    "cancer": "CESC",
+    "protein_change": "L366F",
+    "start": 366,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "R75T",
+    "start": 75,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "G200*",
+    "start": 200,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "M216V",
+    "start": 216,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "H377R",
+    "start": 377,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "S477Y",
+    "start": 477,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "V11L",
+    "start": 11,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "E427G",
+    "start": 427,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "A109V",
+    "start": 109,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "COADREAD",
+    "protein_change": "P561L",
+    "start": 561,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "DLBC",
+    "protein_change": "V375F",
+    "start": 375,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "GBM",
+    "protein_change": "F111L",
+    "start": 111,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "HNSC",
+    "protein_change": "G288V",
+    "start": 288,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "HNSC",
+    "protein_change": "E99D",
+    "start": 99,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "HNSC",
+    "protein_change": "T420I",
+    "start": 420,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "HNSC",
+    "protein_change": "Q63E",
+    "start": 63,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "HNSC",
+    "protein_change": "X112_splice",
+    "start": 112,
+    "type": "Splice_Region"
+   },
+   {
+    "cancer": "KIRC",
+    "protein_change": "G346V",
+    "start": 346,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "KIRP",
+    "protein_change": "P56T",
+    "start": 56,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LGG",
+    "protein_change": "R312I",
+    "start": 312,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LGG",
+    "protein_change": "R120C",
+    "start": 120,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LIHC",
+    "protein_change": "K347N",
+    "start": 347,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LIHC",
+    "protein_change": "K206N",
+    "start": 206,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "L66I",
+    "start": 66,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "I506F",
+    "start": 506,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "T326K",
+    "start": 326,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "K101R",
+    "start": 101,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "E456Q",
+    "start": 456,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "C265W",
+    "start": 265,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUAD",
+    "protein_change": "M98I",
+    "start": 98,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "Q140K",
+    "start": 140,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "Q112P",
+    "start": 112,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "E304*",
+    "start": 304,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "Q218*",
+    "start": 218,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "C262Y",
+    "start": 262,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "Q444*",
+    "start": 444,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "X431_splice",
+    "start": 431,
+    "type": "Splice_Site"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "G48V",
+    "start": 48,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "G288C",
+    "start": 288,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "LUSC",
+    "protein_change": "Q332L",
+    "start": 332,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "MESO",
+    "protein_change": "K370N",
+    "start": 370,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "OV",
+    "protein_change": "P457Afs*8",
+    "start": 456,
+    "type": "Frame_Shift_Ins"
+   },
+   {
+    "cancer": "OV",
+    "protein_change": "G267E",
+    "start": 267,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "PAAD",
+    "protein_change": "L366I",
+    "start": 366,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "P544S",
+    "start": 544,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "R387Q",
+    "start": 387,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "D485V",
+    "start": 485,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "X389_splice",
+    "start": 389,
+    "type": "Splice_Site"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "R199*",
+    "start": 199,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "D485N",
+    "start": 485,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "Q519*",
+    "start": 519,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "A201T",
+    "start": 201,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "R120C",
+    "start": 120,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "H553P",
+    "start": 553,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "F401S",
+    "start": 401,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "M166I",
+    "start": 166,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "Q43*",
+    "start": 43,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "D511N",
+    "start": 511,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "SKCM",
+    "protein_change": "G59E",
+    "start": 59,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "G276S",
+    "start": 276,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "H121R",
+    "start": 121,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "L198F",
+    "start": 198,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "I161N",
+    "start": 161,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "K247T",
+    "start": 247,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "STAD",
+    "protein_change": "K486N",
+    "start": 486,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "E291*",
+    "start": 291,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "P58S",
+    "start": 58,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S567N",
+    "start": 567,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "Q332*",
+    "start": 332,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "V163A",
+    "start": 163,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "E548K",
+    "start": 548,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "E298*",
+    "start": 298,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "N443K",
+    "start": 443,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S571L",
+    "start": 571,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R199Q",
+    "start": 199,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "A85T",
+    "start": 85,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "I392T",
+    "start": 392,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R438M",
+    "start": 438,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "H559N",
+    "start": 559,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R387G",
+    "start": 387,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "E548K",
+    "start": 548,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S397Y",
+    "start": 397,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S153P",
+    "start": 153,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "D419N",
+    "start": 419,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "L103V",
+    "start": 103,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R203H",
+    "start": 203,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "T71A",
+    "start": 71,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "D365Y",
+    "start": 365,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S330Y",
+    "start": 330,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "P26T",
+    "start": 26,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R120C",
+    "start": 120,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R6C",
+    "start": 6,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "S263F",
+    "start": 263,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "K123N",
+    "start": 123,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "K80Nfs*4",
+    "start": 80,
+    "type": "Frame_Shift_Del"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "E548K",
+    "start": 548,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "T475A",
+    "start": 475,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "X431_splice",
+    "start": 431,
+    "type": "Splice_Site"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "P561L",
+    "start": 561,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R203H",
+    "start": 203,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "T243S",
+    "start": 243,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "L306R",
+    "start": 306,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "R254Q",
+    "start": 254,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "G48R",
+    "start": 48,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "V167A",
+    "start": 167,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "F324L",
+    "start": 324,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "K374T",
+    "start": 374,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "D151N",
+    "start": 151,
+    "type": "Missense_Mutation"
+   },
+   {
+    "cancer": "UCEC",
+    "protein_change": "Q283*",
+    "start": 283,
+    "type": "Nonsense_Mutation"
+   },
+   {
+    "cancer": "UCS",
+    "protein_change": "N124D",
+    "start": 124,
+    "type": "Missense_Mutation"
+   }
+  ],
+  "missense_in_ordered": 68,
+  "missense_total": 97,
+  "ordered_binom_p": 0.4533644103256727,
+  "ordered_fraction_expected": 0.6603448275862069,
+  "percent_samples": 0.995882409269367,
+  "recurrent": [
+   {
+    "n": 3,
+    "position": 120
+   },
+   {
+    "n": 3,
+    "position": 548
+   }
+  ],
+  "samples": 104,
+  "sequenced": 10443,
+  "total": 117
+ },
+ "ordered_fraction": 0.6603448275862069,
+ "plddt": [
+  40.91,
+  34.62,
+  42.47,
+  34.41,
+  45.78,
+  33.69,
+  41.38,
+  34.62,
+  36.0,
+  32.69,
+  36.94,
+  37.12,
+  32.91,
+  39.38,
+  34.03,
+  39.31,
+  37.38,
+  41.09,
+  39.25,
+  39.28,
+  41.84,
+  36.06,
+  39.59,
+  43.28,
+  46.12,
+  51.56,
+  51.41,
+  57.34,
+  58.28,
+  60.75,
+  59.09,
+  67.75,
+  72.94,
+  87.25,
+  92.0,
+  90.56,
+  88.56,
+  91.88,
+  92.44,
+  88.06,
+  88.75,
+  91.0,
+  90.38,
+  88.0,
+  86.06,
+  88.69,
+  87.31,
+  85.19,
+  88.81,
+  87.44,
+  91.12,
+  91.75,
+  91.38,
+  88.06,
+  90.38,
+  91.25,
+  91.06,
+  88.19,
+  86.56,
+  85.81,
+  89.38,
+  93.25,
+  92.25,
+  93.81,
+  93.5,
+  88.44,
+  81.75,
+  81.19,
+  83.94,
+  88.94,
+  92.75,
+  94.06,
+  94.44,
+  92.94,
+  93.25,
+  93.44,
+  94.5,
+  94.88,
+  94.44,
+  94.75,
+  94.69,
+  94.69,
+  93.56,
+  93.5,
+  93.75,
+  92.38,
+  91.94,
+  92.94,
+  92.25,
+  92.5,
+  93.62,
+  94.06,
+  93.56,
+  94.38,
+  95.25,
+  95.44,
+  95.69,
+  95.62,
+  95.69,
+  97.0,
+  94.94,
+  95.88,
+  96.75,
+  95.31,
+  94.56,
+  94.56,
+  94.88,
+  94.12,
+  92.5,
+  91.88,
+  94.38,
+  92.0,
+  91.38,
+  92.06,
+  93.94,
+  92.88,
+  92.81,
+  94.44,
+  96.75,
+  96.5,
+  94.75,
+  96.38,
+  98.12,
+  96.56,
+  96.0,
+  97.38,
+  97.56,
+  97.12,
+  97.06,
+  97.38,
+  96.75,
+  95.88,
+  95.5,
+  95.5,
+  94.44,
+  92.38,
+  94.25,
+  93.56,
+  93.44,
+  94.56,
+  95.0,
+  97.0,
+  96.94,
+  97.44,
+  97.62,
+  97.44,
+  97.62,
+  98.31,
+  98.25,
+  97.75,
+  97.62,
+  97.94,
+  96.19,
+  95.88,
+  96.5,
+  93.19,
+  90.12,
+  91.06,
+  94.19,
+  92.94,
+  94.25,
+  95.31,
+  96.19,
+  95.88,
+  96.44,
+  96.62,
+  97.44,
+  96.19,
+  96.19,
+  97.38,
+  97.31,
+  95.38,
+  95.06,
+  95.69,
+  95.69,
+  92.5,
+  92.5,
+  94.12,
+  92.62,
+  89.38,
+  90.19,
+  89.19,
+  89.38,
+  85.81,
+  80.94,
+  75.12,
+  73.81,
+  67.19,
+  57.31,
+  53.81,
+  57.72,
+  58.75,
+  69.94,
+  82.31,
+  86.88,
+  87.19,
+  91.31,
+  92.69,
+  91.69,
+  90.94,
+  92.19,
+  94.31,
+  90.38,
+  90.38,
+  92.94,
+  93.12,
+  95.94,
+  97.0,
+  95.25,
+  95.62,
+  97.44,
+  96.81,
+  96.06,
+  96.62,
+  97.69,
+  97.38,
+  96.81,
+  96.62,
+  97.75,
+  96.75,
+  95.5,
+  96.12,
+  97.06,
+  94.81,
+  95.19,
+  94.94,
+  94.31,
+  95.12,
+  96.12,
+  94.94,
+  95.38,
+  97.44,
+  96.56,
+  95.56,
+  97.19,
+  96.94,
+  96.12,
+  95.69,
+  96.44,
+  94.88,
+  92.94,
+  93.38,
+  93.19,
+  91.25,
+  88.56,
+  86.19,
+  85.75,
+  83.75,
+  85.56,
+  88.69,
+  89.0,
+  91.81,
+  92.81,
+  93.94,
+  93.19,
+  94.75,
+  95.19,
+  95.25,
+  94.19,
+  94.12,
+  94.19,
+  94.81,
+  93.0,
+  92.62,
+  92.75,
+  88.38,
+  88.5,
+  88.81,
+  86.56,
+  84.94,
+  89.19,
+  92.5,
+  93.38,
+  93.25,
+  91.5,
+  90.12,
+  92.81,
+  94.38,
+  91.44,
+  90.94,
+  92.88,
+  92.44,
+  89.81,
+  88.44,
+  92.0,
+  90.38,
+  87.88,
+  86.88,
+  91.19,
+  92.19,
+  92.19,
+  95.12,
+  96.44,
+  96.88,
+  97.69,
+  98.19,
+  98.06,
+  97.5,
+  98.44,
+  98.0,
+  97.38,
+  96.94,
+  96.94,
+  96.44,
+  95.38,
+  95.56,
+  94.94,
+  92.88,
+  92.38,
+  93.69,
+  90.69,
+  90.06,
+  93.44,
+  94.06,
+  94.06,
+  94.94,
+  94.5,
+  93.62,
+  96.5,
+  96.88,
+  95.25,
+  94.62,
+  96.75,
+  96.75,
+  96.94,
+  97.0,
+  97.19,
+  97.0,
+  97.62,
+  97.31,
+  96.56,
+  95.81,
+  96.69,
+  96.0,
+  93.69,
+  94.25,
+  93.75,
+  91.5,
+  89.44,
+  91.31,
+  92.25,
+  90.25,
+  89.12,
+  91.56,
+  90.56,
+  85.31,
+  86.94,
+  87.69,
+  85.56,
+  75.12,
+  62.5,
+  52.53,
+  42.72,
+  42.44,
+  44.75,
+  37.25,
+  43.16,
+  38.03,
+  39.25,
+  41.81,
+  35.28,
+  42.94,
+  40.62,
+  36.06,
+  35.44,
+  38.34,
+  35.03,
+  40.34,
+  38.34,
+  36.22,
+  36.62,
+  30.91,
+  36.62,
+  31.61,
+  37.78,
+  33.38,
+  31.53,
+  37.47,
+  33.62,
+  35.56,
+  41.53,
+  58.09,
+  74.69,
+  88.62,
+  89.19,
+  89.44,
+  91.5,
+  94.44,
+  94.06,
+  94.75,
+  96.25,
+  96.81,
+  96.56,
+  97.19,
+  97.44,
+  97.44,
+  96.75,
+  97.5,
+  97.44,
+  96.5,
+  97.44,
+  96.62,
+  95.25,
+  95.56,
+  95.0,
+  93.25,
+  93.06,
+  94.69,
+  94.12,
+  94.19,
+  92.56,
+  92.81,
+  88.81,
+  82.75,
+  81.88,
+  77.94,
+  72.88,
+  62.94,
+  61.62,
+  79.19,
+  89.88,
+  92.5,
+  93.06,
+  90.88,
+  90.5,
+  88.38,
+  88.69,
+  90.38,
+  89.5,
+  85.56,
+  81.94,
+  81.06,
+  79.38,
+  67.31,
+  61.38,
+  55.12,
+  53.44,
+  47.62,
+  43.03,
+  45.47,
+  45.62,
+  38.94,
+  43.31,
+  47.38,
+  46.78,
+  42.72,
+  45.91,
+  43.91,
+  38.16,
+  50.09,
+  48.16,
+  43.03,
+  53.16,
+  52.06,
+  59.97,
+  74.25,
+  84.44,
+  89.0,
+  90.5,
+  92.12,
+  93.75,
+  94.25,
+  95.69,
+  96.81,
+  97.25,
+  97.94,
+  97.38,
+  97.12,
+  96.88,
+  97.31,
+  95.56,
+  94.44,
+  94.94,
+  91.19,
+  89.31,
+  85.44,
+  77.19,
+  62.09,
+  50.75,
+  46.31,
+  32.91,
+  29.05,
+  32.81,
+  32.31,
+  28.62,
+  36.88,
+  31.5,
+  38.12,
+  36.5,
+  41.44,
+  38.25,
+  39.16,
+  34.38,
+  38.28,
+  42.03,
+  37.53,
+  40.34,
+  42.41,
+  42.69,
+  52.78,
+  57.84,
+  55.16,
+  55.31,
+  44.28,
+  45.0,
+  39.5,
+  38.78,
+  34.84,
+  37.47,
+  33.72,
+  35.09,
+  30.81,
+  29.58,
+  34.84,
+  30.16,
+  38.34,
+  32.25,
+  42.12,
+  35.78,
+  40.56,
+  37.34,
+  37.91,
+  40.62,
+  33.94,
+  34.44,
+  34.38,
+  34.25,
+  35.28,
+  33.19,
+  31.22,
+  31.44,
+  37.28,
+  32.44,
+  36.78,
+  34.31,
+  33.12,
+  36.28,
+  36.44,
+  32.03,
+  37.72,
+  36.38,
+  35.19,
+  34.94,
+  35.81,
+  36.16,
+  37.41,
+  32.5,
+  35.12,
+  29.86,
+  34.06,
+  29.62,
+  32.88,
+  34.44,
+  31.03,
+  31.12,
+  31.38,
+  28.86,
+  34.78,
+  32.53,
+  34.5,
+  33.81,
+  35.31,
+  32.78,
+  37.25,
+  40.12,
+  39.44,
+  35.34,
+  39.03,
+  41.09,
+  41.91,
+  38.47,
+  42.97,
+  41.72,
+  40.91,
+  40.88,
+  42.0,
+  42.91,
+  41.41,
+  37.88,
+  37.62
+ ]
+}
