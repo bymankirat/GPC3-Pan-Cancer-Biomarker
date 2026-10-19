@@ -39,7 +39,7 @@ def read_table(url, raw_name, hub=None, dataset=None):
         data = dest.read_bytes()
         if data[:2] == b"\x1f\x8b":
             data = gzip.decompress(data)
-        return pd.read_csv(io.BytesIO(data), sep="\t", low_memory=False)
+        return pd.read_csv(io.BytesIO(data), sep="\t", low_memory=False, encoding="latin-1")
     except Exception as e:
         log(f"  direct download failed ({str(e)[:80]}); using the Xena API")
     x = xena()
@@ -51,7 +51,7 @@ def read_table(url, raw_name, hub=None, dataset=None):
         vals = x.dataset_probe_values(hub, dataset, samples, [f])[1][0]
         if codes:
             codes = codes.split("\t")
-            vals = [codes[int(v)] if v == v and v is not None else None for v in vals]
+            vals = [codes[int(float(v))] if v is not None and str(v) != "NaN" and float(v) == float(v) else None for v in vals]
         out[f] = vals
     return pd.DataFrame(out)
 
