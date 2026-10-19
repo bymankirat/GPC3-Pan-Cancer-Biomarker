@@ -59,6 +59,6 @@ jobs:
           git add -A results data/derived docs/results.js docs/alphafold.pdb 2>/dev/null || git add -A results data/derived || true
           if ! git diff --cached --quiet; then
             git commit -q -m "Pipeline results (run ${{ github.run_number }})"
-            git pull -q --rebase origin main
+            git pull -q --rebase -X theirs origin main
             git push -q origin HEAD:main
           fi
