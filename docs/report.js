@@ -35,7 +35,7 @@
     [`AUC ${f(lihc.auc)}`, `tells liver tumour from normal liver`, `95% CI ${f(lihc.auc_lo)}–${f(lihc.auc_hi)}`],
     [`${pct(pe.paired && pe.paired.fraction_higher_in_tumour)}`, "of patients: tumour higher than own normal liver", pe.paired ? `${pe.paired.n_pairs} pairs, ${pp(pe.paired.p)}` : ""],
     [OS && OS.cox_adjusted ? `HR ${f(OS.cox_adjusted.hr)}` : "–", "overall survival per SD, adjusted", OS && OS.cox_adjusted ? `${pp(OS.cox_adjusted.p)}, ${OS.cox_adjusted.n} patients` : ""],
-    [OS ? pp(OS.cutpoint.min_p).replace("p ", "") : "–", `"best cutpoint" p for overall survival`, OS ? `after permutation: ${pp(OS.cutpoint.permutation_p)}` : ""],
+    [OS ? `p ${f(OS.cutpoint.min_p, 3)}` : "–", `"best cutpoint" p for overall survival`, OS ? `after permutation: ${pp(OS.cutpoint.permutation_p)}` : ""],
     [D.structure && D.structure.mutations ? `${f(D.structure.mutations.percent_samples, 1)}%` : "–", "of ~10,000 tumours carry a GPC3 mutation", D.structure && D.structure.mutations ? `${D.structure.mutations.total} mutations` : ""],
   ].map(([v, l, s]) => `<div class="kpi"><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div><div class="arms small">${esc(s)}</div></div>`).join("");
 
@@ -77,7 +77,8 @@
     const up = tested.filter((r) => r.direction === "up").map((r) => r.cancer), down = tested.filter((r) => r.direction === "down").map((r) => r.cancer);
     $("#pan-note").textContent = `${tested.length} cancers had enough normal samples to test. GPC3 is higher in ${up.length} (${up.join(", ")}) and lower in ${down.length} (${down.join(", ")}) at FDR 5%. ` +
       `Liver cancer has the largest rise: median ${f(lihc.median_tumour)} vs ${f(lihc.median_normal)} log2(TPM+1), log2 fold change ${f(lihc.log2fc)}. ` +
-      `With so many samples small differences reach significance, so the size of the change and the AUC matter more than the p-value.`;
+      `Outside the liver, GPC3 is more often lower in tumours than in normal tissue, in line with reports that it acts as a growth brake in breast, lung and ovarian tissue. ` +
+      `With so many samples small differences reach significance, so the size of the change and the AUC matter more than the p-value; cancers compared only with GTEx (no TCGA normals) carry a possible batch effect.`;
   })();
 
   // ------------------------------------------------------------ paired + AFP
@@ -118,7 +119,7 @@
   // ------------------------------------------------------------ survival
   (function () {
     if (!S) return;
-    const eps = Object.keys(S.endpoints);
+    const eps = ["OS", "DSS", "PFI"].filter((e) => S.endpoints[e]);
     const seg = $("#ep-seg");
     seg.innerHTML = eps.map((e, i) => `<button data-e="${e}" aria-pressed="${i === 0}">${esc(S.endpoints[e].label)}</button>`).join("");
     function draw(e) {
@@ -162,8 +163,11 @@
     table($("#t-cox"), [{ t: "Endpoint" }, { t: "Model" }, { t: "HR per SD (95% CI)", num: 1 }, { t: "p", num: 1 }, { t: "patients / events", num: 1 }, { t: "PH test p", num: 1 }],
       eps.flatMap((e) => [[S.endpoints[e].label, "GPC3 alone", ...row(e, "cox_univariable")], ["", "+ age, sex, stage", ...row(e, "cox_adjusted")]]));
     const oa = OS.cox_adjusted || {}, ou = OS.cox_univariable || {};
-    $("#surv-note").textContent = `${S.n_patients} liver-cancer patients with survival data. Treating GPC3 as a continuous measure, each standard deviation changes the hazard of death by a factor of ${f(ou.hr)} (${pp(ou.p)}), ` +
-      `and ${f(oa.hr)} (${pp(oa.p)}) after adjusting for age, sex and stage. ` + (ou.p > 0.05 && oa.p > 0.05 ? "This agrees with phase 1: GPC3 does not predict survival in liver cancer." : "Unlike the simple median split, the adjusted model shows an association; see the table for each endpoint.");
+    const dsa = (S.endpoints.DSS || {}).cox_adjusted || {}, stg = (D.drivers || {}).stage;
+    $("#surv-note").textContent = `${S.n_patients} liver-cancer patients with survival data. Like phase 1, a median split shows no difference (overall survival log-rank ${pp(OS.median_split_p)}), and GPC3 alone, as a continuous measure, gives HR ${f(ou.hr)} per SD (${pp(ou.p)}). ` +
+      `But after adjusting for age, sex and stage, more GPC3 goes with shorter overall survival (HR ${f(oa.hr)}, ${pp(oa.p)}) and disease-specific survival (HR ${f(dsa.hr)}, ${pp(dsa.p)}). ` +
+      (stg ? `The reason: late-stage tumours, which do worse, have less GPC3 (median ${f(stg.median_late)} vs ${f(stg.median_early)} in stage I–II), which hides the effect in the crude comparison. ` : "") +
+      `The effect is modest, comes from one cohort and three endpoints were tested, so it needs an independent cohort before anyone relies on it.`;
     // forest
     const pc = (D.survival_pancancer || []).slice().sort((a, b) => a.hr - b.hr);
     const W = 1000, rh = 18, L = 90, Rr = 300, T = 16, H = pc.length * rh + T + 34;
@@ -200,7 +204,7 @@
       el.appendChild(s);
     };
     if (R.cnv) {
-      const gs = Object.entries(R.cnv.groups);
+      const gs = Object.entries(R.cnv.groups).sort((a, b) => +a[0] - +b[0]);
       const W = 420, H = 280, L = 44, B = 40, T = 10;
       const mx = Math.max(...gs.map(([, g]) => g.q[4])), mn = Math.min(...gs.map(([, g]) => g.q[0]));
       const y = (v) => T + (1 - (v - mn) / (mx - mn)) * (H - T - B), bw = (W - L - 20) / gs.length;
@@ -228,8 +232,8 @@
     rows.push([`Stage I–II`, R.stage.n_early, f(R.stage.median_early)], [`Stage III–IV`, R.stage.n_late, f(R.stage.median_late)]);
     rows.push(["Men", R.sex.n_male, f(R.sex.median_male)], ["Women", R.sex.n_female, f(R.sex.median_female)]);
     table($("#t-clin"), [{ t: "Group" }, { t: "Tumours", num: 1 }, { t: `Median ${G}`, num: 1 }], rows);
-    $("#drv-note").textContent = (R.cnv ? `Copy number tracks GPC3 only ${Math.abs(R.cnv.spearman) < 0.2 ? "weakly" : "moderately"} (ρ = ${f(R.cnv.spearman)}), so most of the rise is not from extra copies of the gene. ` : "") +
-      (R.methylation ? `${R.methylation.negative_sig ? "Lower methylation at some probes goes with higher GPC3, consistent with the gene being switched on epigenetically." : "Methylation shows no clear negative link."} ` : "") +
+    $("#drv-note").textContent = (R.cnv ? `${Math.abs(R.cnv.spearman) < 0.1 ? "Copy number does not track GPC3" : "Copy number tracks GPC3 only weakly"} (ρ = ${f(R.cnv.spearman)}), so the rise is not from extra copies of the gene. ` : "") +
+      (R.methylation ? `${R.methylation.negative_sig ? `Methylation does: at ${R.methylation.negative_sig} of ${R.methylation.probes} probes, less methylation goes with more GPC3 (strongest ρ = ${f(R.methylation.best.rho)}), consistent with the gene being switched on epigenetically.` : "Methylation shows no clear negative link."} ` : "") +
       `Higher grade goes with more GPC3 (ρ = ${f(R.grade.rho)}, ${pp(R.grade.p)}); stage ${R.stage.p < 0.05 ? "differs" : "does not"} (${pp(R.stage.p)}); men vs women ${pp(R.sex.p)}. ` +
       (R.afp ? `GPC3 and AFP correlate with ρ = ${f(R.afp.rho)}; ${pct(R.afp.gpc3_only)} of tumours are high for GPC3 but not AFP.` : "");
   })();
@@ -254,11 +258,11 @@
       $("#c-gsea").appendChild(s);
     }
     const tp = C.top_positive.slice(0, 12), tn = C.top_negative.slice(0, 12);
-    table($("#t-co"), [{ t: "With GPC3" }, { t: "ρ", num: 1 }, { t: "Against GPC3" }, { t: "ρ", num: 1 }],
+    table($("#t-co"), [{ t: "With GPC3" }, { t: "rho", num: 1 }, { t: "Against GPC3" }, { t: "rho", num: 1 }],
       tp.map((r, i) => [`<span class="mono">${esc(r.gene)}</span>`, f(r.rho), tn[i] ? `<span class="mono">${esc(tn[i].gene)}</span>` : "", tn[i] ? f(tn[i].rho) : ""]));
     const wnt = gs.find((g) => /wnt/i.test(g.term));
     $("#co-note").textContent = `Across ${C.n_tumours} liver tumours and ${C.n_genes.toLocaleString()} expressed genes. ` +
-      (wnt ? `Phase 1's network pointed to Wnt; here Wnt/β-catenin signalling has NES ${f(wnt.nes)} (FDR ${f(wnt.fdr, 3)}), ${wnt.fdr < 0.05 ? (wnt.nes > 0 ? "so it does rise with GPC3." : "so it falls as GPC3 rises.") : "so tumours with more GPC3 do not show clearly more Wnt activity at the RNA level."} ` : "") +
+      `The closest partners include foetal-liver genes such as ${C.top_positive.slice(0, 6).map((r) => r.gene).join(', ')}. ` + (wnt ? `Phase 1's network pointed to Wnt; here Wnt/β-catenin signalling has NES ${f(wnt.nes)} (FDR ${f(wnt.fdr, 3)}), ${wnt.fdr < 0.05 ? (wnt.nes > 0 ? "so it does rise with GPC3." : "so it falls as GPC3 rises.") : "so tumours with more GPC3 do not show clearly more Wnt activity at the RNA level."} ` : "") +
       (gs.length ? `Top sets up with GPC3: ${gs.slice(0, 3).map((g) => g.term).join(", ")}; down: ${gs.slice(-3).reverse().map((g) => g.term).join(", ")}.` : "");
   })();
 
@@ -322,7 +326,7 @@
     $("#str-note").textContent = `${n} residues; AlphaFold is confident (pLDDT ≥ 70) for ${pct(P.ordered_fraction)} of them and very unsure (< 50) for ${pct(P.disordered_fraction)}, mostly the ends, as phase 1's disorder prediction said. ` +
       (M ? `GPC3 is mutated in ${f(M.percent_samples, 1)}% of ${M.sequenced.toLocaleString()} sequenced tumours (${M.total} mutations), mostly in cancers with many mutations overall. ` +
         `${M.missense_in_ordered} of ${M.missense_total} missense changes fall in the confidently folded core, where ${pct(M.ordered_fraction_expected)} would be expected by chance (${pp(M.ordered_binom_p)}). ` +
-        (M.recurrent.length ? `Recurrent positions: ${M.recurrent.map((r) => `${r.position} (${r.n}×)`).join(", ")}.` : "No position is hit three times or more, so there is no mutation hotspot: GPC3 is changed by expression, not by mutation.") : "");
+        (M.recurrent.length ? `The most-hit positions (${M.recurrent.map((r) => `${r.position}, ${r.n}×`).join("; ")}) are hit only a few times across 10,000 tumours, so there is no real hotspot.` : "No position is hit three times or more, so there is no mutation hotspot.") + " GPC3 is changed in cancer by how much is made, not by mutation." : "");
   })();
 
   // ------------------------------------------------------------ checks + takeaways
@@ -337,8 +341,9 @@
 
   const take = [];
   take.push(`GPC3 is a liver-cancer marker above all: AUC ${f(lihc.auc)} against normal liver, and higher in the tumour in ${pct(pe.paired && pe.paired.fraction_higher_in_tumour)} of patients with both samples.`);
-  if (OS) take.push(`It does not predict survival: overall survival HR ${f(OS.cox_adjusted && OS.cox_adjusted.hr)} per SD after adjusting for age, sex and stage (${pp(OS.cox_adjusted && OS.cox_adjusted.p)}). The "best cutpoint" p of ${f(OS.cutpoint.min_p, 3)} becomes ${f(OS.cutpoint.permutation_p, 2)} once the search is accounted for.`);
-  if (D.drivers && D.drivers.cnv) take.push(`Its rise is not mainly from extra gene copies (ρ = ${f(D.drivers.cnv.spearman)} with copy number); it tracks tumour grade${D.drivers.afp ? ` and only partly overlaps AFP (ρ = ${f(D.drivers.afp.rho)})` : ""}.`);
+  if (OS) take.push(`Crude survival analysis finds nothing (median split ${pp(OS.median_split_p)}), but adjusted for age, sex and stage, more GPC3 goes with shorter overall survival (HR ${f(OS.cox_adjusted.hr)} per SD, ${pp(OS.cox_adjusted.p)}): late-stage tumours have less GPC3 and hide the effect. The "best cutpoint" p of ${f(OS.cutpoint.min_p, 3)} becomes ${f(OS.cutpoint.permutation_p, 2)} once the search is accounted for.`);
+  if (D.drivers && D.drivers.cnv) take.push(`It is switched on epigenetically, not by extra gene copies: expression falls with methylation (${D.drivers.methylation ? `${D.drivers.methylation.negative_sig} of ${D.drivers.methylation.probes} probes, strongest ρ = ${f(D.drivers.methylation.best.rho)}` : "–"}) but not with copy number (ρ = ${f(D.drivers.cnv.spearman)}).`);
+  if (D.coexpression) take.push(`High-GPC3 tumours look foetal and fast-growing: its closest partners include ${D.coexpression.top_positive.slice(0, 6).map((r) => r.gene).join(", ")}, with E2F, G2-M and MYC programmes up and normal liver metabolism down.`);
   if (D.structure && D.structure.mutations) take.push(`Mutations are rare (${f(D.structure.mutations.percent_samples, 1)}% of tumours) and scattered: GPC3 matters in cancer through how much is made, which is why it works as a target for antibodies and CAR-T cells.`);
   $("#takeaways").innerHTML = take.map((t) => `<p>${esc(t)}</p>`).join("");
 })();

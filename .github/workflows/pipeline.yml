@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name "bymankirat"
           git config user.email "msinghsandal@gmail.com"
-          git add -A results data/derived docs/results.js docs/alphafold.pdb 2>/dev/null || git add -A results data/derived || true
+          git add -A results data/derived docs/results.js docs/alphafold.pdb docs/3Dmol-min.js 2>/dev/null || git add -A results data/derived || true
           if ! git diff --cached --quiet; then
             git commit -q -m "Pipeline results (run ${{ github.run_number }})"
             git pull -q --rebase -X theirs origin main

@@ -26,6 +26,7 @@ CBIOPORTAL = "https://www.cbioportal.org/api"
 UNIPROT_JSON = "https://rest.uniprot.org/uniprotkb/{acc}.json"
 ALPHAFOLD_API = "https://alphafold.ebi.ac.uk/api/prediction/{acc}"
 HALLMARK_LIBRARY = "MSigDB_Hallmark_2020"   # from Enrichr via gseapy
+VIEWER_JS = "https://cdn.jsdelivr.net/npm/3dmol@2.1.0/build/3Dmol-min.js"
 
 # TCGA primary site -> matching GTEx tissue where the two use different names (None = no fair GTEx match)
 GTEX_SITE = {"Thyroid Gland": ("Thyroid", None), "Endometrium": ("Uterus", None), "Cervix": ("Cervix Uteri", None),

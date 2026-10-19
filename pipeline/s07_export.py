@@ -35,6 +35,13 @@ def main():
     js = "window.GPC3 = " + json.dumps(clean(out), separators=(",", ":"), allow_nan=False) + ";\n"
     (ROOT / "docs" / "results.js").write_text(js)
     shutil.copy(DERIVED / "alphafold.pdb", ROOT / "docs" / "alphafold.pdb")
+    viewer = ROOT / "docs" / "3Dmol-min.js"   # 3D viewer library, kept with the page so it does not depend on a CDN
+    if not viewer.exists():
+        try:
+            from util import http
+            viewer.write_bytes(http("GET", config.VIEWER_JS).content)
+        except Exception as e:
+            log("3D viewer library not downloaded:", str(e)[:100])
     log(f"docs/results.js written ({len(js) / 1024:.0f} kB)")
 
 
