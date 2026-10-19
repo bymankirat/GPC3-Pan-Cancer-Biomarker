@@ -34,7 +34,7 @@ def main():
         m = pd.read_csv(mf)
         den = load_json(DERIVED / "mutation_denominators.json") if (DERIVED / "mutation_denominators.json").exists() else {}
         m["cancer"] = m.study.str.replace("_tcga_pan_can_atlas_2018", "").str.upper()
-        per = m.groupby("cancer").sample.nunique().rename("mutated").reset_index()
+        per = m.groupby("cancer")["sample"].nunique().rename("mutated").reset_index()
         per["sequenced"] = per.cancer.map({k.replace("_tcga_pan_can_atlas_2018", "").upper(): v for k, v in den.items()})
         per["percent"] = 100 * per.mutated / per.sequenced
         total_seq = sum(v for v in den.values() if v)
@@ -46,14 +46,14 @@ def main():
         binom = st.binomtest(obs, len(pos), expected_frac) if len(pos) else None
         hot = pos.value_counts()
         out["mutations"] = {
-            "total": int(len(m)), "samples": int(m.sample.nunique()), "sequenced": int(total_seq),
-            "percent_samples": 100 * m.sample.nunique() / total_seq if total_seq else None,
+            "total": int(len(m)), "samples": int(m["sample"].nunique()), "sequenced": int(total_seq),
+            "percent_samples": 100 * m["sample"].nunique() / total_seq if total_seq else None,
             "by_type": m.type.value_counts().to_dict(), "by_cancer": per.sort_values("mutated", ascending=False).round(2).to_dict(orient="records"),
             "missense_in_ordered": obs, "missense_total": int(len(pos)), "ordered_fraction_expected": expected_frac,
             "ordered_binom_p": float(binom.pvalue) if binom else None,
             "recurrent": [{"position": int(k), "n": int(v)} for k, v in hot[hot >= 3].items()],
             "list": m[["cancer", "protein_change", "type", "start"]].fillna("").to_dict(orient="records")}
-        log(f"{len(m)} mutations in {m.sample.nunique()} of {total_seq} tumours; missense in ordered core {obs}/{len(pos)} "
+        log(f"{len(m)} mutations in {m["sample"].nunique()} of {total_seq} tumours; missense in ordered core {obs}/{len(pos)} "
             f"(expected {expected_frac:.0%})")
     save_json(RESULTS / "structure.json", out)
     log(f"AlphaFold: {out['ordered_fraction']:.0%} residues pLDDT>=70, {out['disordered_fraction']:.0%} below 50")
