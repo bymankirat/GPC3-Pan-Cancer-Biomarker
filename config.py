@@ -27,6 +27,11 @@ UNIPROT_JSON = "https://rest.uniprot.org/uniprotkb/{acc}.json"
 ALPHAFOLD_API = "https://alphafold.ebi.ac.uk/api/prediction/{acc}"
 HALLMARK_LIBRARY = "MSigDB_Hallmark_2020"   # from Enrichr via gseapy
 
+# TCGA primary site -> matching GTEx tissue where the two use different names (None = no fair GTEx match)
+GTEX_SITE = {"Thyroid Gland": ("Thyroid", None), "Endometrium": ("Uterus", None), "Cervix": ("Cervix Uteri", None),
+             "Adrenal gland": ("Adrenal Gland", None), "White blood cell": ("Blood", "Whole Blood"),
+             "Lymphatic tissue": None, "Head and Neck region": None, "Soft tissue,Bone": None}
+
 # Analysis choices, fixed before looking at results
 MIN_GROUP = 10                 # minimum tumour and normal samples for a cancer to be tested
 FDR = 0.05

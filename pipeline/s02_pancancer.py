@@ -30,6 +30,18 @@ def load():
     return pan
 
 
+def gtex_match(pan, site):
+    """GTEx samples of the organ a TCGA cancer comes from (names differ for a few organs)."""
+    gt = pan.study == "GTEX"
+    if site in config.GTEX_SITE:
+        m = config.GTEX_SITE[site]
+        if m is None:
+            return gt & False
+        tissue, detail = m
+        return gt & (pan.site == tissue) & ((pan.detail == detail) if detail else True)
+    return gt & (pan.site.str.lower() == str(site).lower())
+
+
 def quantiles(v):
     return [round(float(x), 3) for x in np.percentile(v, [5, 25, 50, 75, 95])]
 
@@ -42,8 +54,7 @@ def main():
     rows, dist = [], {}
     for c, t in tum.groupby("cancer"):
         site = t.site.mode().iat[0]
-        normal = pan[pan.sample_type.isin(NORMAL_TYPES) & pan[g].notna() &
-                     (((pan.study == "TCGA") & (pan.cancer == c)) | ((pan.study == "GTEX") & (pan.site == site)))]
+        normal = pan[pan.sample_type.isin(NORMAL_TYPES) & pan[g].notna() & (((pan.study == "TCGA") & (pan.cancer == c)) | gtex_match(pan, site))]
         tcga_n = normal[normal.study == "TCGA"]
         row = {"cancer": c, "disease": t.disease.mode().iat[0], "site": site, "n_tumour": len(t), "n_normal": len(normal),
                "n_normal_tcga": len(tcga_n), "n_normal_gtex": int((normal.study == "GTEX").sum()),
@@ -84,7 +95,7 @@ def main():
         m = config.PARTNER_MARKER
         t = tum[tum.cancer == f]
         site = t.site.mode().iat[0]
-        normal = pan[pan.sample_type.isin(NORMAL_TYPES) & (((pan.study == "TCGA") & (pan.cancer == f)) | ((pan.study == "GTEX") & (pan.site == site)))]
+        normal = pan[pan.sample_type.isin(NORMAL_TYPES) & (((pan.study == "TCGA") & (pan.cancer == f)) | gtex_match(pan, site))]
         both_t = t.dropna(subset=[g, m])
         both_n = normal.dropna(subset=[g, m])
         afp = {"auc_gpc3": auc(both_t[g], both_n[g]), "auc_afp": auc(both_t[m], both_n[m]),
