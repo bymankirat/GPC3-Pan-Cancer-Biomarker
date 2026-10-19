@@ -10,7 +10,7 @@
   },
   "lihc_expression": {
    "bytes": 16492723,
-   "md5": "e7d607b2526bc543b3dc3295f5936691",
+   "md5": "cff3ee57408ebd90a80a6ae9759c57a3",
    "source": "https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.LIHC.sampleMap%2FHiSeqV2.gz"
   },
   "methylation": {
@@ -36,12 +36,12 @@
   },
   "pancancer_expression": {
    "bytes": 335862,
-   "md5": "cb5c5a4bc8de80c24bf3987b333e8e36",
+   "md5": "ebf41d0fc6135eaa755b0bb4412ec2c2",
    "source": "https://toil.xenahubs.net TcgaTargetGtex_rsem_gene_tpm probes {'GPC3': 'ENSG00000147257.13', 'AFP': 'ENSG00000081051.7'}"
   },
   "survival": {
    "bytes": 183414,
-   "md5": "6febb3267e3a14a6dde66ea2aacc37a3",
+   "md5": "8cfaea569f4b972eaa0be8e6ddc69bba",
    "source": "https://pancanatlas.xenahubs.net Survival_SupplementalTable_S1_20171025_xena_sp"
   },
   "uniprot": {
