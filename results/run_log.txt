@@ -1,0 +1,18 @@
+
+=== step 1: download TCGA, GTEx, survival, copy number, methylation, mutations, UniProt, AlphaFold ===
+09:15:19 sample annotations (Toil)
+09:15:19   direct download failed ('utf-8' codec can't decode byte 0xca in position 15827: invalid continuation byt); using the Xena API
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/xenaPython/__init__.py:110: FutureWarning: Possible nested set at position 7
+  re.sub(r"^[^[]+[[]([^]]*)[]].*$", r"\1", query, flags=re.DOTALL))
+Traceback (most recent call last):
+  File "/home/runner/work/GPC3-Pan-Cancer-Biomarker/GPC3-Pan-Cancer-Biomarker/run_all.py", line 42, in <module>
+    main()
+  File "/home/runner/work/GPC3-Pan-Cancer-Biomarker/GPC3-Pan-Cancer-Biomarker/run_all.py", line 37, in main
+    importlib.import_module(mod).main()
+  File "/home/runner/work/GPC3-Pan-Cancer-Biomarker/GPC3-Pan-Cancer-Biomarker/pipeline/s01_fetch.py", line 97, in main
+    pheno = read_table(config.TOIL_PHENO_URL, "toil_phenotype.txt.gz", config.TOIL_HUB, config.TOIL_PHENO)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/GPC3-Pan-Cancer-Biomarker/GPC3-Pan-Cancer-Biomarker/pipeline/s01_fetch.py", line 54, in read_table
+    vals = [codes[int(v)] if v == v and v is not None else None for v in vals]
+                  ^^^^^^
+ValueError: invalid literal for int() with base 10: 'NaN'
